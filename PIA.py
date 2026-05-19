@@ -1,3 +1,6 @@
+#Se importan las librerías necesarias para el procesamiento
+#visualización y la interfaz
+
 import cv2
 import numpy as np
 import pydicom
@@ -20,6 +23,9 @@ img_gray = None
 # =========================
 # MOSTRAR IMAGEN
 # =========================
+#Con ella aparece la imagen en la interfaz, redimensiona la imagen
+#y verifica que esté en la imagen sea gris, sino lo corrige
+#convierte BGR a RGB
 
 def mostrar_imagen(imagen, panel):
 
@@ -40,6 +46,8 @@ def mostrar_imagen(imagen, panel):
 # =========================
 # CARGAR IMAGEN
 # =========================
+#Se abre la imagen, verifica el tipo de imagen, 
+#la convierte a escala de grises
 
 def cargar_imagen():
 
@@ -93,6 +101,9 @@ def cargar_imagen():
 # =========================
 # HISTOGRAMA
 # =========================
+#Se toma la imagen original, ecualiza su histograma,
+#mejora el contraste y finalmente, muestra la imagen resultante
+#así como las gráficas
 
 def ecualizar_histograma():
 
@@ -125,6 +136,8 @@ def ecualizar_histograma():
 # =========================
 # FILTRO MEDIA
 # =========================
+#Se aplica un filtro paso-bajo suavizando las imagen reduciendo el ruido
+#y se eliminan pequeñas variaciones
 
 def filtro_media():
 
@@ -141,6 +154,8 @@ def filtro_media():
 # =========================
 # FILTRO GAUSSIANO
 # =========================
+#Se aplica un suavizado gaussiano para reducir el ruido conservando
+#las estructuras más importantes de la imagen
 
 def filtro_gaussiano():
 
@@ -157,6 +172,8 @@ def filtro_gaussiano():
 # =========================
 # FILTRO SOBEL
 # =========================
+#En este caso se aplica un filtro paso-alto, que ayuda a calcular gredientes,
+#detectar bordes, combinar direcciones, resaltando estructuras anatómicas
 
 def filtro_sobel():
 
@@ -179,6 +196,8 @@ def filtro_sobel():
 # =========================
 # FILTRO LAPLACIANO
 # =========================
+#Este filtro resalta bordes, puede detectar detalles finos, pero
+#asímismo puede amplificar el ruido de la imagen
 
 def filtro_laplaciano():
 
@@ -197,6 +216,9 @@ def filtro_laplaciano():
 # =========================
 # RESTA DE IMAGENES
 # =========================
+#Esta parte del programa hace que se reste una imagen original y una suavizada,
+#logrando la eliminación de infromación uniforme, logra resaltar bordes
+#y ayuda a resaltar detalles anatómicos con más facilidad
 
 def resta_imagenes():
 
@@ -215,6 +237,9 @@ def resta_imagenes():
 # =========================
 # OPERACIONES LOGICAS
 # =========================
+#Se crea una máscara binaria mediante umbralización separando las regiones
+#de interés, eliminando las zonas oscuras y dejando las zonas claras,
+#lo que permite aislar órganos y separar tejidos, así como eliminar el fondo
 
 def operaciones_logicas():
 
@@ -241,6 +266,9 @@ def operaciones_logicas():
 # =========================
 # SEGMENTACION
 # =========================
+#Se modifica el umbral de segmentación usando un slider
+#a partir de intensidades de 0 a 255, esto ayuda a visualizar
+#la imagen mejor por regiones o estructuras anatómicas
 
 def actualizar_umbral(valor):
 
@@ -264,6 +292,10 @@ def actualizar_umbral(valor):
 # =========================
 # FOURIER
 # =========================
+#Se realiza el proceso de la imagen en el dominio de la frecuencia
+#convirtiendo la imagen al dominio de Fourier, lo que permite
+#visualizar las fecuencias, aplicar un filtro y así 
+#reconstruir la imagen
 
 def transformada_fourier():
 
@@ -322,6 +354,12 @@ def transformada_fourier():
 # =========================
 # DETECCION DE TUMOR
 # =========================
+#En este caso primero se suaviza la imagen con un fiktro gaussiano para reducir el ruido
+#y después se ecualiza el histograma para mejorar el contraste
+#Después se aplica una segmentación por umbral para detectar zonas brillantes 
+#y se utilizan operaciones morfológicas para eliminar ruido y mejorar las regiones detectadas
+#De esta manera, se identifican contornos y se dibujan rectángulos sobre las áreas que 
+#cumplen ciertas características geométricas
 
 def detectar_tumor():
 
